@@ -45,9 +45,7 @@ func main() {
 
 	allowedOrigins := strings.Split(cfg.AllowedOrigins, ",")
 	router.Use(cors.New(cors.Config{
-		AllowOrigins: []string{
-			"http://localhost:5173",
-		},
+		AllowOrigins: allowedOrigins,
 		AllowMethods: []string{
 			"GET",
 			"POST",

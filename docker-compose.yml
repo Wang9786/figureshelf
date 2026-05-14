@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: figureshelf_backend
+    restart: unless-stopped
+    environment:
+      APP_PORT: 8080
+      DATABASE_URL: postgres://figureshelf:figureshelf123@postgres:5432/figureshelf_db?sslmode=disable
+      REDIS_ADDR: redis:6379
+      JWT_SECRET: figureshelf-dev-secret
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16
+    container_name: figureshelf_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: figureshelf
+      POSTGRES_PASSWORD: figureshelf123
+      POSTGRES_DB: figureshelf_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - figureshelf_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: figureshelf_redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - figureshelf_redis_data:/data
+
+volumes:
+  figureshelf_postgres_data:
+  figureshelf_redis_data:

@@ -1,0 +1,34 @@
+# Dependencies
+frontend/node_modules/
+backend/vendor/
+
+# Build outputs
+frontend/dist/
+backend/figureshelf-backend
+backend/*.exe
+
+# Environment files
+.env
+.env.*
+*.env
+*.env.local
+frontend/.env
+frontend/.env.*
+backend/.env
+backend/.env.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker / temporary
+*.tmp
+tmp/
